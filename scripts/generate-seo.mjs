@@ -4,7 +4,7 @@ import path from "node:path";
 const root = process.cwd();
 const productsFile = fs.readFileSync(path.join(root, "src/data/products.js"), "utf8");
 const slugs = [...productsFile.matchAll(/slug:\s*["']([^"']+)["']/g)].map((match) => match[1]);
-const rawSiteUrl = process.env.VITE_SITE_URL || process.env.SITE_URL || "https://revert-clothing.com";
+const rawSiteUrl = process.env.VITE_SITE_URL || process.env.SITE_URL || "https://revert-clothing.it";
 const siteUrl = rawSiteUrl.trim().replace(/\/$/, "");
 
 if (!/^https:\/\//i.test(siteUrl)) {
@@ -34,14 +34,16 @@ Allow: /
 
 Sitemap: ${siteUrl}/sitemap.xml
 `;
+
 fs.writeFileSync(path.join(root, "public/sitemap.xml"), sitemap);
 fs.writeFileSync(path.join(root, "public/robots.txt"), robots);
 
-// Aggiorna gli URL SEO statici nell'HTML senza usare placeholder %...%,
-// che causano l'errore Vite "URI malformed".
 const indexPath = path.join(root, "index.html");
 const indexHtml = fs.readFileSync(indexPath, "utf8");
-const updatedIndexHtml = indexHtml.replaceAll("https://revert-clothing.com", siteUrl);
+const updatedIndexHtml = indexHtml.replace(
+  /https:\/\/(?:www\.)?(?:revert-clothing\.com|revert-collection\.it|revert-clothing\.it|example\.com)/g,
+  siteUrl,
+);
 fs.writeFileSync(indexPath, updatedIndexHtml);
 
 console.log(`SEO files generated for ${siteUrl}`);
