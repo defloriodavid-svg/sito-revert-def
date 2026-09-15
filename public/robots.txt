@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://revert-clothing.com/sitemap.xml
+Sitemap: https://revert-clothing.it/sitemap.xml
