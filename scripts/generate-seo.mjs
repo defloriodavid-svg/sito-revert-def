@@ -4,7 +4,7 @@ import path from "node:path";
 const root = process.cwd();
 const productsFile = fs.readFileSync(path.join(root, "src/data/products.js"), "utf8");
 const slugs = [...productsFile.matchAll(/slug:\s*["']([^"']+)["']/g)].map((match) => match[1]);
-const rawSiteUrl = process.env.VITE_SITE_URL || process.env.SITE_URL || "https://revert-clothing.it";
+const rawSiteUrl = process.env.VITE_SITE_URL || process.env.SITE_URL || "https://www.revert-collection.it";
 const siteUrl = rawSiteUrl.trim().replace(/\/$/, "");
 
 if (!/^https:\/\//i.test(siteUrl)) {
