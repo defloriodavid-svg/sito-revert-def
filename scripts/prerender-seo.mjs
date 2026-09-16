@@ -4,7 +4,7 @@ import { products } from "../src/data/products.js";
 
 const root = process.cwd();
 const dist = path.join(root, "dist");
-const siteUrl = (process.env.VITE_SITE_URL || process.env.SITE_URL || "https://revert-clothing.it").trim().replace(/\/$/, "");
+const siteUrl = (process.env.VITE_SITE_URL || process.env.SITE_URL || "https://www.revert-collection.it").trim().replace(/\/$/, "");
 const template = fs.readFileSync(path.join(dist, "index.html"), "utf8");
 
 const escapeHtml = (value) => String(value)
